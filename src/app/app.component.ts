@@ -49,11 +49,11 @@ export class AppComponent {
     prompt('ID Token', this.oauthService.getIdToken());
   }
 
-  public get name() {
-    return null; 
-    let claims = this.oauthService.getIdentityClaims() as any;
-    if (!claims) { return null; }
+  public get accessToken() {
+    return this.oauthService.getAccessToken();
+  }
 
-    return claims;
+  public get idToken() {
+    return this.oauthService.getIdToken();
   }
 }

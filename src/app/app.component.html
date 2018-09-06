@@ -1,8 +1,5 @@
 <div>
   <div class="container py-5">
-
-    <h4 *ngIf="name">Hello {{name}}</h4>
-
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
@@ -33,10 +30,36 @@
       </div>
     </div>
 
-    <button class="btn btn-primary btn-block mt-3" (click)="configureOAuth()">Fire away</button>
-    <div class="btn-group mt-2">
-        <button class="btn btn-outline-dark" (click)="getAccessToken()">Get Access Token</button>
-        <button class="btn btn-outline-dark" (click)="getIdToken()">Get ID Token</button>
+    <button class="btn btn-primary btn-block mt-3" (click)="configureOAuth()" *ngIf="!accessToken && !idToken">Fire away</button>
+
+    <hr/>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group" *ngIf="accessToken">
+          <label for="access_token">Access Token</label>
+
+          <div class="input-group">
+            <input [(ngModel)]="accessToken" type="text" name="access_token" id="access_token" class="form-control" readonly>
+            <span class="input-group-append">
+              <button class="btn btn-secondary-outline" type="button" (click)="getAccessToken()">Copy</button>
+            </span>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group" *ngIf="idToken">
+          <label for="access_token">ID Token</label>
+
+          <div class="input-group">
+            <input [(ngModel)]="idToken" type="text" name="access_token" id="access_token" class="form-control" readonly>
+            <span class="input-group-append">
+              <button class="btn btn-secondary-outline" type="button"  (click)="getIdToken()">Copy</button>
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
