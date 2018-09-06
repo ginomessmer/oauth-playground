@@ -1,5 +1,15 @@
 <div>
-  <div class="container py-5">
+  <div class="container py-4">
+    <h2>OAuth/OIDC</h2>
+    <p class="lead">
+      Playground Lab
+
+      <button class="btn btn-outline-primary btn-sm float-right" (click)="configureOAuth()" *ngIf="!accessToken && !idToken">Sign in</button>
+      <button class="btn btn-outline-danger btn-sm float-right" (click)="signOut()" *ngIf="accessToken && idToken">Sign out</button>
+    </p>
+    
+    <hr/>
+
     <div class="row">
       <div class="col-md-12">
         <div class="form-group">
@@ -29,8 +39,6 @@
         </div>
       </div>
     </div>
-
-    <button class="btn btn-primary btn-block mt-3" (click)="configureOAuth()" *ngIf="!accessToken && !idToken">Fire away</button>
 
     <hr/>
 

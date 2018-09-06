@@ -34,6 +34,11 @@ export class AppComponent {
     })
   }
 
+  private signOut() {
+    this.oauthService.logOut();
+    
+  }
+
   saveConfigToLocalStorage(): any {
     localStorage.setItem('clientId', this.clientId);
     localStorage.setItem('issuer', this.issuer);
