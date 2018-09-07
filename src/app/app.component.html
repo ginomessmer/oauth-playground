@@ -93,6 +93,9 @@
                       <span class="input-group-text">Bearer</span>
                     </div>
                     <input class="form-control" [(ngModel)]="postBearerToken">
+                    <div class="input-group-append animated fadeIn" *ngIf="postBearerToken">
+                      <button class="btn btn-outline-secondary" (click)="clearBearerToken()"><i class="far fa-trash-alt"></i></button>
+                    </div>
                   </div>
                 </div>
               </div>

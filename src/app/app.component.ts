@@ -53,17 +53,23 @@ export class AppComponent {
   }
 
   getAccessToken() {
-    prompt('Access Token', this.oauthService.getAccessToken());
+    this.postBearerToken = this.oauthService.getAccessToken();
+    // prompt('Access Token', this.oauthService.getAccessToken());
   }
 
   getIdToken() {
-    prompt('ID Token', this.oauthService.getIdToken());
+    this.postBearerToken = this.oauthService.getIdToken();
+    // prompt('ID Token', this.oauthService.getIdToken());
   }
 
   sendPost() {
     this.httpClient.post(this.postEndpoint, this.postJsonBody).subscribe(data => {
       this.postOutput = data.toString();
     });
+  }
+
+  clearBearerToken() {
+    this.postBearerToken = '';
   }
 
   public get accessToken() {
