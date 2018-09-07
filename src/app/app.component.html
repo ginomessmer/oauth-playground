@@ -44,7 +44,7 @@
 
     <hr/>
 
-    <div class="row" *ngIf="accessToken && idToken">
+    <div class="row animated fadeIn" *ngIf="accessToken && idToken">
       <div class="col-md-6">
         <div class="form-group">
           <label for="access_token">Access Token</label>
@@ -80,7 +80,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>API Endpoint</label>
-                  <input type="url" class="form-control">
+                  <input type="url" class="form-control" [(ngModel)]="postEndpoint">
                 </div>
               </div>
 
@@ -92,10 +92,7 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text">Bearer</span>
                     </div>
-                    <select class="form-control">
-                      <option>{{accessToken}}</option>
-                      <option>{{idToken}}</option>
-                    </select>
+                    <input class="form-control" [(ngModel)]="postBearerToken">
                   </div>
                 </div>
               </div>
@@ -103,12 +100,12 @@
               <div class="col-md-12">
                 <div class="form-group">
                   <label>JSON Body</label>
-                  <textarea class="form-control" rows="5"></textarea>
+                  <textarea class="form-control" rows="5" [(ngModel)]="postJsonBody"></textarea>
                 </div>
               </div>
 
               <div class="col-md-12">
-                <button class="btn btn-primary btn-block">POST</button>
+                <button class="btn btn-primary btn-block" (click)="sendPost()">POST</button>
               </div>
             </div>
           </div>

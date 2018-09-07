@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { OAuthService, JwksValidationHandler, AuthConfig } from 'angular-oauth2-oidc';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +13,13 @@ export class AppComponent {
   @Input() redirectUri = localStorage.getItem('redirectUri');
   @Input() scope = localStorage.getItem('scope');
 
-  constructor(private oauthService: OAuthService) {
+
+  postEndpoint = '';
+  postBearerToken = '';
+  postJsonBody = '';
+  postOutput: String;
+
+  constructor(private oauthService: OAuthService, private httpClient: HttpClient) {
     console.log(oauthService.getAccessToken());
   }
 
@@ -36,7 +43,6 @@ export class AppComponent {
 
   private signOut() {
     this.oauthService.logOut();
-    
   }
 
   saveConfigToLocalStorage(): any {
@@ -52,6 +58,12 @@ export class AppComponent {
 
   getIdToken() {
     prompt('ID Token', this.oauthService.getIdToken());
+  }
+
+  sendPost() {
+    this.httpClient.post(this.postEndpoint, this.postJsonBody).subscribe(data => {
+      this.postOutput = data.toString();
+    });
   }
 
   public get accessToken() {
